@@ -106,7 +106,7 @@ with requests.Session() as s:
         r = s.get('http://10.66.31.153/primitive/mapjson/pc/PendulumRigController/pa/setCommand?commandIndex=11')
         print(r.url)
         print('Stopping Autorun - repsonse: ' + str(r.status_code))
-        return ('', 204)
+        return render_template('suite.html', parent_dict=d)
 
 
     @app.route('/resume')
