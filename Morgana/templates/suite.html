@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Bot Suite!</title>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <title>Bot Suite</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='bot.css') }}">
+
+
+    <!--script for loop and refresh-->
+    <script>
+            var interval = 5000; //milliseconds
+            //sendRequest(); //call function
+            function sendRequest(variable){
+                    var v = variable
+                    var req = $.ajax({
+                        url: "/getReadings",
+                        success:
+                          function(result){
+                           setTimeout(function(){
+                           $('#myTable').load('suite #myTable');
+                           console.log(v);
+                           }, interval);
+                           sendRequest(v); //this will send request again and again;
+                        }})
+                        };
+    </script>
+
+    <script>
+        function statUpdateStart(){
+             document.getElementById('status').innerHTML = 'Running';
+        }
+
+        function statUpdateStop(){
+             document.getElementById('status').innerHTML = 'Paused';
+        }
+    </script>
+
+    <!--script for Table Filter-->
+    <script>
+    function myFunction() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+
+        //Filter first column (Lengths)
+        td = tr[i].getElementsByTagName("td")[0];
+
+        //Filter second column (Target Length)
+        ts = tr[i].getElementsByTagName("td")[1];
+
+        //Filter third column (Period)
+        tt = tr[i].getElementsByTagName("td")[2];
+
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+              ts.innerHTML.toUpperCase().indexOf(filter) > -1 ||
+              tt.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+     <!--favicon-->
+    <link rel="shortcut icon" href="https://d1ujqdpfgkvqfi.cloudfront.net/favicon-generator/htdocs/favicons/2017-06-08/64f31824695bf2b574e6ceb757461897.ico.png">
+</head>
+
+
+<body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{url_for('index')}}">Bot Suite</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h2>Pendulum Rig</h2><p id="status">Stopped</p><a id="play" class="glyphicon glyphicon-play" href="{{url_for('resume')}}" onclick="sendRequest(1); statUpdateStart()"></a><a id="pause" class="glyphicon glyphicon-pause" href="{{url_for('pause')}}" onclick="sendRequest(0); statUpdateStop();"></a>
+      <p>The results below are taken from the JSON response that is called on the Sahara Labs, included (but not shown) are Watchdog, StepPV, ProcState, StepSP, ProcMode</p>
+
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search lengths and period"style="width:100%;">
+        <table class="table table-responsive table-hover results" id="myTable">
+        <thead>
+        <tr class="header">
+              <th style="width:33%;">Length(cm)</th>
+              <th style="width:33%">TargetLength(cm)</th>
+              <th style="width:33%;">Period(s)</th>
+          </tr>
+        </thead>
+        <tbody>
+      {% for d in parent_dict %}
+      <tr id="content">
+          <td>{{ parent_dict[d].Length }}</td>
+          <td>{{ parent_dict[d].TargetLength}}</td>
+          <td>{{ parent_dict[d].Period }} </td>
+      </tr>{% endfor %}
+        </tbody>
+      </table>
+        </div>
+
+
+    <div class="footer navbar-fixed-bottom text-center">
+      <p>Raphael Luis Villafana - 2017</p>
+    </div>
+
+</body>
+</html>

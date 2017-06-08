@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BotSuite</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap stuff-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='bot.css') }}">
+</head>
+
+    <!--favicon-->
+    <link rel="shortcut icon" href="https://d1ujqdpfgkvqfi.cloudfront.net/favicon-generator/htdocs/favicons/2017-06-08/64f31824695bf2b574e6ceb757461897.ico.png">
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{url_for('index')}}">Bot Suite</a>
+    </div>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="{{url_for('stopRig')}}">Stop Rigs</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>List of Rigs</h1>
+    <p>Below are a list of rigs available to the bot. These are the same rigs users can individually access in the Remote Labs platform</p>
+  </div>
+</div>
+
+<div class="container-fluid bg-3 text-center">
+  <h3>Rigs</h3><br>
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Pendulum</p>
+        <a href="{{url_for('suite')}}"><h1 class="headings" style="width=100%; height=100%; text-decoration:none;">1</h1></a>
+    </div>
+    <div class="col-sm-3">
+      <p>Rig 2</p>
+        <a href="#"><h1 class="headings" style="width=100%; height=100%; text-decoration:none;">2</h1></a>
+    </div>
+    <div class="col-sm-3">
+      <p>Rig 3</p>
+        <a href="#"><h1 class="headings" style="width=100%; height=100%; text-decoration:none;">3</h1></a>
+    </div>
+    <div class="col-sm-3">
+      <p>Rig 4</p>
+        <a href="#"><h1 class="headings" style="width=100%; height=100%; text-decoration:none;">4</h1></a>
+    </div>
+  </div>
+</div><br>
+
+<div class="container-fluid bg-3 text-center">
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Rig 5</p>
+        <a href="#"><h1 class="headings" style="width=100%; height=100%; text-decoration:none;">5</h1></a>
+    </div>
+    <div class="col-sm-3">
+      <p>Rig 6</p>
+        <a href="#"><h1 class="headings" style="width=100%; height=100%; text-decoration:none;">6</h1></a>
+    </div>
+    <div class="col-sm-3">
+      <p>Rig 7</p>
+        <a href="#"><h1 class="headings" style="width=100%; height=100%; text-decoration:none;">7</h1></a>
+    </div>
+    <div class="col-sm-3">
+      <p>Rig 8</p>
+        <a href="#"><h1 class="headings" style="width=100%; height=100%; text-decoration:none;">8</h1></a>
+    </div>
+  </div>
+</div><br><br>
+
+    <div class="footer navbar-fixed-bottom text-center">
+      <p>Raphael Luis Villafana - 2017</p>
+    </div>
+
+</body>
+</html>

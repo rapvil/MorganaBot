@@ -1,0 +1,45 @@
+    h1 {
+        text-decoration: none;
+        color: red;
+    }
+
+    h1:hover {
+        text-decoration:none;
+    }
+
+    a:hover{
+        text-decoration:none;
+    }
+
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    tr {
+	width: 100%;
+	display: inline-table;
+	table-layout: fixed;
+	}
+
+	table{
+	 height:70%;              // <-- Select the height of the table
+	 display: -moz-groupbox;    // Firefox Bad Effect
+	}
+	tbody{
+	  overflow-y: scroll;
+	  height: 60%;            //  <-- Select the height of the body
+	  width: 100%;
+	  position: absolute;
+	}
+
+	.table-responsive {
+    max-height:300px;
+    }
